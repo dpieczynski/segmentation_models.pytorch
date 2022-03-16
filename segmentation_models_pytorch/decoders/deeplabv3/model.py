@@ -56,6 +56,7 @@ class DeepLabV3(SegmentationModel):
         activation: Optional[str] = None,
         upsampling: int = 8,
         aux_params: Optional[dict] = None,
+        encoder_kwargs: dict = {}
     ):
         super().__init__()
 
@@ -65,6 +66,7 @@ class DeepLabV3(SegmentationModel):
             depth=encoder_depth,
             weights=encoder_weights,
             output_stride=8,
+            **encoder_kwargs
         )
 
         self.decoder = DeepLabV3Decoder(
@@ -137,6 +139,7 @@ class DeepLabV3Plus(SegmentationModel):
         activation: Optional[str] = None,
         upsampling: int = 4,
         aux_params: Optional[dict] = None,
+        encoder_kwargs: dict = {}
     ):
         super().__init__()
 
@@ -149,6 +152,7 @@ class DeepLabV3Plus(SegmentationModel):
             depth=encoder_depth,
             weights=encoder_weights,
             output_stride=encoder_output_stride,
+            **encoder_kwargs
         )
 
         self.decoder = DeepLabV3PlusDecoder(
