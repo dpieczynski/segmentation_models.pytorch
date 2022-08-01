@@ -66,6 +66,7 @@ class MAnet(SegmentationModel):
         classes: int = 1,
         activation: Optional[Union[str, callable]] = None,
         aux_params: Optional[dict] = None,
+        encoder_kwargs: dict = {},
     ):
         super().__init__()
 
@@ -74,6 +75,7 @@ class MAnet(SegmentationModel):
             in_channels=in_channels,
             depth=encoder_depth,
             weights=encoder_weights,
+            **encoder_kwargs
         )
 
         self.decoder = MAnetDecoder(
